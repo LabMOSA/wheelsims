@@ -20,6 +20,10 @@ var last_push_pattern: String
 @export var node_virtual_wheel_right: Node
 
 # Variables
+
+## Results from wheelsims_analysis (python) - Updated by parent node
+var analysis_results := {}
+
 var positions := []
 var trail_size := 0.11
 
@@ -41,59 +45,10 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	# Once start the analysis by sending a request to the python bridge
-	if Globals.main:
-		if Globals.main.has_node("PythonBridge"):
-			if Globals.main.get_node("PythonBridge")._udp_receiver_connected and not connected:
-				connected = true
-				_update_arg()
-				Globals.main.get_node("PythonBridge").send("biofeedback_update", arg, "start")
-		# Reset the connected flag if the python bridge is disconnected
-		else:
-			if connected:
-				connected = false
-
-	# Update loop process if the process is connected
-	if connected:
-		visible = true
-		if Globals.main.has_node("PythonBridge"):
-			var data = Globals.main.get_node("PythonBridge").receive(last_push_pattern + "_" + side)
-
-			if data is Dictionary and data.has("data") and data["data"].size() > 0:
-				if data["command"] == "biofeedback_update":
-					if data["data"].keys()[0] == side:
-						var value = data["data"][side][last_push_pattern]
-						positions = parse_trail_points(value)
-						_update_multimesh()
-	else:
-		visible = false
-
-	# Should we quit
-	if not Config.get_value("overlays.biofeedback_push_pattern.enabled"):
-		# Stop the biofeedback from python bridge if this overlays is shut down
-		if (
-			Globals.main.has_node("PythonBridge")
-			and connected
-			and not Config.get_value("overlays.biofeedback_push_frequency.enabled")
-		):
-			# Tell the python bridge to stop the repeating update process
-			Globals.main.get_node("PythonBridge").send("biofeedback_update", {}, "stop")
-			# Send a final request to reset the biofeedback script data
-			_update_arg()
-			Globals.main.get_node("PythonBridge").send("biofeedback_stop", arg, "once")
-		# Remove the overlay node from the scene tree
-		queue_free()
-
-
-# Update the arguments to send the requests to the python bridge
-func _update_arg():
-	arg = {
-		"coordinates_left_wheel_center": Config.get_value("coordinates.left_wheel_center"),
-		"coordinates_right_wheel_center": Config.get_value("coordinates.right_wheel_center"),
-		"coordinates_left_hand": Config.get_value("coordinates.left_hand"),
-		"coordinates_right_hand": Config.get_value("coordinates.right_hand"),
-		"wheel_diameter": Config.get_value("player.pushrim_diameter"),
-	}
+	if analysis_results != {}:
+		var value = analysis_results[side][last_push_pattern]
+		positions = parse_trail_points(value)
+		_update_multimesh()
 
 
 # Set layer, references, and coordinate variables based on the selected side (left or right)

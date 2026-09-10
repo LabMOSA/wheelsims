@@ -33,51 +33,13 @@ var current_value = 0.0
 var connected = false
 var biofeedback_args
 
+## Results from wheelsims_analysis (python) - Updated by parent node
+var analysis_results := {}
+
 
 func _process(_delta) -> void:
-	# Once start the analysis by sending a request to the python bridge
-	if Globals.main.has_node("PythonBridge"):
-		if Globals.main.get_node("PythonBridge")._udp_receiver_connected and not connected:
-			connected = true
-			_update_arg()
-			Globals.main.get_node("PythonBridge").send(
-				"biofeedback_update", biofeedback_args, "start"
-			)
-	# Reset the connected flag if the python bridge is disconnected
-	else:
-		if connected:
-			connected = false
-
-	# Update the slider if the process is connected
-	if connected:
-		if Globals.main.has_node("PythonBridge"):
-			var data = Globals.main.get_node("PythonBridge").receive("biofeedback_push_frequency")
-			_update_slider(data)
-
-	# Should we quit
-	if not Config.get_value("overlays.biofeedback_push_frequency.enabled"):
-		# Stop the biofeedback from python bridge if this overlays is shut down
-		if (
-			Globals.main.has_node("PythonBridge")
-			and connected
-			and not Config.get_value("overlays.biofeedback_push_pattern.enabled")
-		):
-			# Tell the python bridge to stop the repeating update process
-			Globals.main.get_node("PythonBridge").send("biofeedback_update", {}, "stop")
-			# Send a final request to reset the biofeedback script data
-			_update_arg()
-			Globals.main.get_node("PythonBridge").send("biofeedback_stop", biofeedback_args, "once")
-		# Remove the overlay node from the scene tree
-		queue_free()
-
-
-# Update the slider with slider parameters and the received mean push frequency
-func _update_slider(data):
-	if data is Dictionary and data.has("data") and data["data"].size() > 0:
-		if data["command"] == "biofeedback_update":
-			var side = data["data"].keys()[0]
-			if data["data"][side].has("mean_push_frequency"):
-				current_value = data["data"][side]["mean_push_frequency"]
+	if "right" in analysis_results and "mean_push_frequency" in analysis_results["right"]:
+		current_value = analysis_results["right"]["mean_push_frequency"]
 
 	node_min_value.text = str(min_value)
 	node_max_value.text = str(max_value)
@@ -101,14 +63,3 @@ func _update_slider(data):
 	node_max_target_value.text = str(max_target_value)
 
 	node_max_target_value.position.y = node_green_zone.size.y
-
-
-# Update the arguments to send the requests to the python bridge
-func _update_arg():
-	biofeedback_args = {
-		"coordinates_left_wheel_center": Config.get_value("coordinates.left_wheel_center"),
-		"coordinates_right_wheel_center": Config.get_value("coordinates.right_wheel_center"),
-		"coordinates_left_hand": Config.get_value("coordinates.left_hand"),
-		"coordinates_right_hand": Config.get_value("coordinates.right_hand"),
-		"wheel_diameter": Config.get_value("player.pushrim_diameter"),
-	}

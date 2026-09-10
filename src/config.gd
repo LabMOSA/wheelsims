@@ -106,7 +106,7 @@ var _defaults: Dictionary[String, Dictionary] = {
 	"overlays": {"order": 3, "label": "OVERLAYS"},
 	"overlays.speed_indicator.enabled":
 	{"order": 3.01, "label": "Speed indicator", "type": "bool", "default": true},
-	"overlays.debug.enabled": {"order": 3.02, "label": "Debug", "type": "bool", "default": false},
+	"overlays.debug.enabled": {"order": 3.15, "label": "Debug", "type": "bool", "default": false},
 	"overlays.biofeedback_kinematics.enabled":
 	{"order": 3.02, "label": "Biofeedback: Kinematics", "type": "bool", "default": false},
 	"overlays.biofeedback_push_pattern.enabled":

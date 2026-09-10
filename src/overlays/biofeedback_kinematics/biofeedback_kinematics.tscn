@@ -7,6 +7,6 @@
 [node name="BiofeedbackKinematics" type="Node2D" unique_id=905171298]
 script = ExtResource("1_ib00y")
 
-[node name="BiofeedbackPushFrequency" parent="." unique_id=1961947020 instance=ExtResource("1_boggs")]
-
 [node name="BiofeedbackPushPattern" parent="." unique_id=2135710720 instance=ExtResource("2_ib00y")]
+
+[node name="BiofeedbackPushFrequency" parent="." unique_id=1961947020 instance=ExtResource("1_boggs")]

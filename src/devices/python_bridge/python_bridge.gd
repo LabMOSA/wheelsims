@@ -23,6 +23,7 @@ func _ready():
 	# Launch Python app
 	var python_app_path: String = Config.get_value("devices.python_bridge.python_path")
 	var python_script_path: String = Config.get_value("devices.python_bridge.script_path")
+	var conda_environment: String = "wheelsims"
 
 	if python_app_path == "":
 		print("Cannot launch Python because Python app path is unset.")
@@ -32,23 +33,24 @@ func _ready():
 		print("Cannot launch Python because Python app script is unset.")
 		return
 
+	var parameters: Array[String]
+	if conda_environment == "":  # Bare Python environment
+		parameters = [python_script_path]
+	else:
+		parameters = [
+			"run", "-n", conda_environment, "--no-capture-output", "python", python_script_path
+		]
+
 	if OS.get_name() == "macOS":
 		print("Launching a terminal window for Python Bridge...")
-		OS.create_process(
-			"/usr/bin/osascript",
-			[
-				"-e",
-				(
-					'tell app "Terminal" to do script "'
-					+ python_app_path
-					+ " "
-					+ python_script_path
-					+ '"'
-				)
-			]
-		)
+		var cmd: String = 'tell app "Terminal" to do script "' + python_app_path + " "
+		for parameter in parameters:
+			cmd += parameter
+		cmd += '"'
+		OS.create_process("/usr/bin/osascript", ["-e", cmd])
 	else:
-		OS.create_process(python_app_path, [python_script_path], true)
+		print(python_app_path, parameters)
+		OS.create_process(python_app_path, parameters, true)
 
 	# Set UDP receiver and UDP sender
 	_udp_receiver.bind(udp_receive_port)

@@ -12,8 +12,7 @@
 extends Node
 
 ## Emitted with the config id as argument on configuration change.
-signal modified  
-
+signal modified
 
 # -------------------------------------------------------------------
 # Private variables and functions
@@ -137,7 +136,14 @@ var _defaults: Dictionary[String, Dictionary] = {
 	"overlays.biofeedback_pushrim_kinetics.enabled":
 	{"order": 3.07, "label": "Biofeedback: Pushrim Kinetics", "type": "bool", "default": false},
 	"overlays.biofeedback_pushrim_kinetics.target_force":
-	{"order": 3.08, "label": "Target Force", "type": "float", "default": 50.0, "min": 25.0, "max": 125.0},
+	{
+		"order": 3.08,
+		"label": "Target Force",
+		"type": "float",
+		"default": 50.0,
+		"min": 25.0,
+		"max": 125.0
+	},
 	"devices": {"order": 4, "label": "DEVICE SETTINGS"},
 	"devices.screens": {"order": 4.1, "label": "Screens"},
 	"devices.screens.single_screen": {"order": 4.2, "label": "Single screen"},
@@ -186,7 +192,7 @@ var _defaults: Dictionary[String, Dictionary] = {
 	"devices.python_bridge.enabled":
 	{"order": 4.8, "label": "Python Bridge", "type": "bool", "default": false},
 	"devices.python_bridge.python_path":
-	{"order": 4.81, "label": "Python app path", "type": "file", "default": ""},
+	{"order": 4.81, "label": "Python or conda path", "type": "file", "default": ""},
 	"devices.python_bridge.script_path":
 	{"order": 4.82, "label": "Python script path", "type": "file", "default": ""},
 	"devices.data_logging": {"order": 4.9, "label": "DATA LOGGING"},

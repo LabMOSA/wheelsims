@@ -43,6 +43,9 @@ extends Node2D
 @export_subgroup("Trails")
 @export var trails_visibled = true
 
+## Results from wheelsims_analysis (python) - Updated by parent node
+var analysis_results := {}
+
 var position_wheel_l
 var position_wheel_r
 var radius_wheel
@@ -81,9 +84,6 @@ func _ready() -> void:
 func _process(_delta):
 	update_wheelchair()
 	update_push_pattern_label()
-
-	if not Config.get_value("overlays.biofeedback_push_pattern.enabled"):
-		queue_free()
 
 
 # Update wheelchair model based on configuration and tracking data
@@ -154,23 +154,8 @@ func window_user():
 
 # Update the push pattern label when the Python biofeedback script detects a propulsive cycle
 func update_push_pattern_label():
-	if Globals.main.has_node("PythonBridge"):
-		var data = Globals.main.get_node("PythonBridge").receive("push_pattern_label")
-
-		if data is Dictionary and data.has("data") and data["data"].size() > 0:
-			if data["command"] == "biofeedback_update":
-				var side = data["data"].keys()[0]
-				if data["data"][side].has("label_push_pattern") and side == "right":
-					node_push_pattern_label.text = data["data"][side]["label_push_pattern"]
-
-					if push_pattern_tween:
-						push_pattern_tween.kill()
-					node_push_pattern_label.scale = Vector2.ZERO
-
-					push_pattern_tween = create_tween()
-					push_pattern_tween.tween_property(
-						node_push_pattern_label, "scale", Vector2.ONE, 0.1
-					)
+	if ("right" in analysis_results) and ("label_push_pattern" in analysis_results["right"]):
+		node_push_pattern_label.text = analysis_results["right"]["label_push_pattern"]
 	else:
 		node_push_pattern_label.text = ""
 

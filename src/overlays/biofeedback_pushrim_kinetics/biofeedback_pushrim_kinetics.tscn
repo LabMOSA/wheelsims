@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://ccudr43mvulkw"]
+
+[ext_resource type="Script" uid="uid://ihas823kxmv8" path="res://overlays/biofeedback_pushrim_kinetics/biofeedback_pushrim_kinetics.gd" id="1_vub0q"]
+
+[sub_resource type="Theme" id="Theme_2n6hd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hiv0f"]
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 0.392157)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_rpek1"]
+font_color = Color(1, 1, 0, 1)
+
+[node name="BiofeedbackPushrimKinetics" type="Node2D" unique_id=2135710720]
+script = ExtResource("1_vub0q")
+
+[node name="OverlayFrame" type="PanelContainer" parent="." unique_id=1522539722]
+offset_left = 390.0
+offset_top = 74.0
+offset_right = 750.0
+offset_bottom = 254.0
+theme = SubResource("Theme_2n6hd")
+theme_override_styles/panel = SubResource("StyleBoxFlat_hiv0f")
+
+[node name="Origin" type="Node2D" parent="OverlayFrame" unique_id=2062605545]
+position = Vector2(36.78, 155)
+
+[node name="FtargetCurve" type="Line2D" parent="OverlayFrame/Origin" unique_id=599340807]
+unique_name_in_owner = true
+points = PackedVector2Array(0, 0, 300, 0)
+width = 1.0
+default_color = Color(1, 1, 0, 1)
+
+[node name="FtargetValue" type="Label" parent="OverlayFrame/Origin/FtargetCurve" unique_id=688906635]
+unique_name_in_owner = true
+offset_left = -42.78
+offset_top = -12.0
+offset_right = -6.779999
+offset_bottom = 11.0
+text = "50"
+label_settings = SubResource("LabelSettings_rpek1")
+horizontal_alignment = 2
+
+[node name="XAxis" type="Line2D" parent="OverlayFrame/Origin" unique_id=802459769]
+points = PackedVector2Array(0, 0, 300, 0)
+width = 1.0
+
+[node name="FtotCurve" type="Line2D" parent="OverlayFrame/Origin" unique_id=192410465]
+unique_name_in_owner = true
+points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 299, 0)
+width = 1.0
+default_color = Color(0, 1, 0, 1)
+
+[node name="FpeakLabel" type="Label" parent="OverlayFrame/Origin" unique_id=116549456]
+unique_name_in_owner = true
+offset_left = 271.22003
+offset_top = -151.0
+offset_right = 319.22003
+offset_bottom = -110.0
+horizontal_alignment = 1
+vertical_alignment = 1

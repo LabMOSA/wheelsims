@@ -1,19 +1,24 @@
 extends Node2D
 
-const N_POINTS := 100
+const N_POINTS := 300
 
 var f_tot_curve: Array[float] = []
 var python_bridge: Node
 
 @onready var n_answers := 0
-@onready var multimesh_instance: MultiMeshInstance2D = %MultiMeshInstance2D
+
+## Set FlimitCurve and FlimitValue to a given value.
+func _set_f_limit(value:float):
+	%FtargetCurve.position.y = -value
+	%FtargetValue.text = str(int(value))
 
 
 func _ready() -> void:
-	# Set initial curve to 0
+	# Set initial values
 	for i in N_POINTS:
 		f_tot_curve.append(0.0)
-	multimesh_instance.multimesh.instance_count = N_POINTS
+	_set_f_limit(Config.get_value("overlays.biofeedback_pushrim_kinetics.target_force"))
+	
 	await SignalBus.python_bridge_connected
 	python_bridge = Globals.main.get_node("PythonBridge")
 	await python_bridge.run("biofeedback_pushrim_kinetics_connect", {"ip": "dummy"})
@@ -23,12 +28,20 @@ func _ready() -> void:
 func update_loop() -> void:
 	while true:
 		var result = await python_bridge.run("biofeedback_pushrim_kinetics_process", {})
+		var f_peak = str(int(result["Fpeak"]))
+		if f_peak == "0":
+			f_peak = ""
+		%FpeakLabel.text = f_peak
 		for i in N_POINTS:
 			f_tot_curve[i] = result["FtotCurve"][i]
 
-		# Update the multimesh
+		var new_points : Array[Vector2] = []
 		for i in N_POINTS:
-			multimesh_instance.multimesh.set_instance_transform_2d(
-				i, Transform2D(0.0, Vector2(i, -f_tot_curve[i]))
-			)
-			multimesh_instance.multimesh.set_instance_color(i, Color(1, 0, 0))
+			new_points.append(Vector2(i, -f_tot_curve[i]))
+		%FtotCurve.points = PackedVector2Array(new_points)
+
+func _process(_delta) -> void:
+	if Config.value_changed("biofeedback_pushrim_kinetics", "overlays.biofeedback_pushrim_kinetics.target_force"):
+		_set_f_limit(Config.get_value("overlays.biofeedback_pushrim_kinetics.target_force"))
+	if not Config.get_value("overlays.biofeedback_pushrim_kinetics.enabled"):
+		queue_free()

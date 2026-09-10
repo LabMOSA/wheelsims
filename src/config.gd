@@ -11,6 +11,10 @@
 ## and user modifications to the configuration panel calls its corresponding set_value.
 extends Node
 
+## Emitted with the config id as argument on configuration change.
+signal modified  
+
+
 # -------------------------------------------------------------------
 # Private variables and functions
 # -------------------------------------------------------------------
@@ -104,8 +108,10 @@ var _defaults: Dictionary[String, Dictionary] = {
 	"overlays.speed_indicator.enabled":
 	{"order": 3.01, "label": "Speed indicator", "type": "bool", "default": true},
 	"overlays.debug.enabled": {"order": 3.02, "label": "Debug", "type": "bool", "default": false},
+	"overlays.biofeedback_kinematics.enabled":
+	{"order": 3.02, "label": "Biofeedback: Kinematics", "type": "bool", "default": false},
 	"overlays.biofeedback_push_pattern.enabled":
-	{"order": 3.03, "label": "Biofeedback Push pattern", "type": "bool", "default": false},
+	{"order": 3.03, "label": "Push Pattern", "type": "bool", "default": false},
 	"overlays.contact_angle_start":
 	{
 		"order": 3.04,
@@ -127,7 +133,11 @@ var _defaults: Dictionary[String, Dictionary] = {
 		"max": 140.0
 	},
 	"overlays.biofeedback_push_frequency.enabled":
-	{"order": 3.06, "label": "Biofeedback Push Frequency", "type": "bool", "default": false},
+	{"order": 3.06, "label": "Push Frequency", "type": "bool", "default": false},
+	"overlays.biofeedback_pushrim_kinetics.enabled":
+	{"order": 3.07, "label": "Biofeedback: Pushrim Kinetics", "type": "bool", "default": false},
+	"overlays.biofeedback_pushrim_kinetics.target_force":
+	{"order": 3.08, "label": "Target Force", "type": "float", "default": 50.0, "min": 25.0, "max": 125.0},
 	"devices": {"order": 4, "label": "DEVICE SETTINGS"},
 	"devices.screens": {"order": 4.1, "label": "Screens"},
 	"devices.screens.single_screen": {"order": 4.2, "label": "Single screen"},
@@ -144,8 +154,6 @@ var _defaults: Dictionary[String, Dictionary] = {
 		"min": 1,
 		"max": 5
 	},
-	"overlays.biofeedback_pushrim_kinetics.enabled":
-	{"order": 3.07, "label": "Biofeedback Pushrim Kinetics", "type": "bool", "default": false},
 	"devices.screens.front_floor_screens": {"order": 4.3, "label": "Front+floor screens"},
 	"devices.screens.front_floor_screens.enabled":
 	{"order": 4.31, "label": "Enabled", "type": "bool", "default": false},
@@ -357,6 +365,8 @@ func set_value(key: String, value):
 	# Tell everyone that config has been modified
 	for caller_id in _modified:
 		_modified[caller_id][key] = true
+	# Send the modified signal for other modules to react to it
+	modified.emit(key)
 
 
 ## Has value been changed since last call with a given caller_id?

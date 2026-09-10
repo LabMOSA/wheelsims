@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dplhvslsrr6oi"]
 
-[ext_resource type="Script" uid="uid://bbwd1obrx2ctc" path="res://overlays/biofeedback_push_pattern/biofeedback_push_pattern_gui.gd" id="1_tlu87"]
+[ext_resource type="Script" uid="uid://bbwd1obrx2ctc" path="res://overlays/biofeedback_kinematics/biofeedback_push_pattern_gui.gd" id="1_tlu87"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rspjr"]
 bg_color = Color(0, 0, 0, 1)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c5tbnk1yth8r8"]
 
-[ext_resource type="Script" uid="uid://dshp4p67kpaqf" path="res://overlays/biofeedback_push_frequency/biofeedback_push_frequency.gd" id="1_1j4x4"]
+[ext_resource type="Script" uid="uid://dshp4p67kpaqf" path="res://overlays/biofeedback_kinematics/biofeedback_push_frequency.gd" id="1_1j4x4"]
 
 [sub_resource type="Theme" id="Theme_lgowx"]
 

@@ -45,7 +45,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if analysis_results != {}:
+	if side in analysis_results and last_push_pattern in analysis_results[side]:
 		var value = analysis_results[side][last_push_pattern]
 		positions = parse_trail_points(value)
 		_update_multimesh()

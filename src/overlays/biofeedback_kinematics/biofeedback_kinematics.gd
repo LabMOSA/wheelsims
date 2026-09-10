@@ -45,3 +45,6 @@ func _process(_delta) -> void:
 	$BiofeedbackPushFrequency.visible = Config.get_value(
 		"overlays.biofeedback_push_frequency.enabled"
 	)
+
+	if not Config.get_value("overlays.biofeedback_kinematics.enabled"):
+		queue_free()

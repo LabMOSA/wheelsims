@@ -144,6 +144,13 @@ var _defaults: Dictionary[String, Dictionary] = {
 		"min": 25.0,
 		"max": 125.0
 	},
+	"overlays.biofeedback_pushrim_kinetics.wheel_ip":
+	{
+		"order": 3.09,
+		"label": "Wheel IP ('xx.xx.xx.xx' or 'dummy')",
+		"type": "string",
+		"default": "dummy"
+	},
 	"devices": {"order": 4, "label": "DEVICE SETTINGS"},
 	"devices.screens": {"order": 4.1, "label": "Screens"},
 	"devices.screens.single_screen": {"order": 4.2, "label": "Single screen"},

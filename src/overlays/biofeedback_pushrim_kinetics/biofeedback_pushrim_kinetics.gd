@@ -22,13 +22,19 @@ func _ready() -> void:
 
 	await SignalBus.python_bridge_connected
 	python_bridge = Globals.main.get_node("PythonBridge")
-	await python_bridge.run("biofeedback_pushrim_kinetics_connect", {"ip": "dummy"})
+	await python_bridge.run(
+		"biofeedback_pushrim_kinetics_connect",
+		{"ip": Config.get_value("overlays.biofeedback_pushrim_kinetics.wheel_ip")}
+	)
 	update_loop()
 
 
 func update_loop() -> void:
 	while true:
 		var result = await python_bridge.run("biofeedback_pushrim_kinetics_process", {})
+		if result == null:
+			continue
+
 		var f_peak = str(int(result["Fpeak"]))
 		if f_peak == "0":
 			f_peak = ""

@@ -1,20 +1,9 @@
 [gd_scene format=3 uid="uid://c5tbnk1yth8r8"]
 
 [ext_resource type="Script" uid="uid://dshp4p67kpaqf" path="res://overlays/biofeedback_kinematics/biofeedback_push_frequency.gd" id="1_1j4x4"]
+[ext_resource type="StyleBox" uid="uid://cy7mpmbs64amu" path="res://overlays/overlay_panel_theme.tres" id="2_mk121"]
 
 [sub_resource type="Theme" id="Theme_lgowx"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1j4x4"]
-bg_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 1, 1, 0.392157)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_pa624"]
 font_size = 10
@@ -39,12 +28,10 @@ node_green_zone = NodePath("OverlayPanel/OverlayVboxContainer/SliderZone/TargetZ
 
 [node name="OverlayPanel" type="PanelContainer" parent="." unique_id=1378768941]
 layout_mode = 0
-offset_left = 950.0
-offset_top = 480.0
-offset_right = 1050.0
-offset_bottom = 676.0
+offset_right = 100.0
+offset_bottom = 196.0
 theme = SubResource("Theme_lgowx")
-theme_override_styles/panel = SubResource("StyleBoxFlat_1j4x4")
+theme_override_styles/panel = ExtResource("2_mk121")
 
 [node name="OverlayVboxContainer" type="VBoxContainer" parent="OverlayPanel" unique_id=679876289]
 layout_mode = 2
@@ -114,16 +101,15 @@ color = Color(0, 0, 0, 1)
 [node name="Slider" type="Control" parent="OverlayPanel/OverlayVboxContainer/SliderZone" unique_id=676311746]
 anchors_preset = 0
 
-[node name="PinkRectangle" type="ColorRect" parent="OverlayPanel/OverlayVboxContainer/SliderZone/Slider" unique_id=296154187]
+[node name="Contour" type="ColorRect" parent="OverlayPanel/OverlayVboxContainer/SliderZone/Slider" unique_id=296154187]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 0
 offset_left = -11.0
 offset_top = -1.5
 offset_right = 31.0
 offset_bottom = 1.5
-color = Color(0.7261977, 0.58809257, 0.95339173, 1)
 
-[node name="BlackLineSlider" type="ColorRect" parent="OverlayPanel/OverlayVboxContainer/SliderZone/Slider" unique_id=1613428399]
+[node name="SliderLine" type="ColorRect" parent="OverlayPanel/OverlayVboxContainer/SliderZone/Slider" unique_id=1613428399]
 custom_minimum_size = Vector2(40, 1)
 layout_mode = 0
 offset_left = -10.0
@@ -132,7 +118,7 @@ offset_right = 30.0
 offset_bottom = 0.5
 size_flags_vertical = 4
 offset_transform_position = Vector2(-10, 0)
-color = Color(0, 0, 0, 1)
+color = Color(0.089999974, 0.36299992, 1, 1)
 
 [node name="MinValue" type="Label" parent="OverlayPanel/OverlayVboxContainer" unique_id=1533846735]
 layout_mode = 2

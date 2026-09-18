@@ -8,5 +8,10 @@
 script = ExtResource("1_ib00y")
 
 [node name="BiofeedbackPushPattern" parent="." unique_id=2135710720 instance=ExtResource("2_ib00y")]
+position = Vector2(462, 197)
 
 [node name="BiofeedbackPushFrequency" parent="." unique_id=1961947020 instance=ExtResource("1_boggs")]
+offset_left = 828.0
+offset_top = 326.0
+offset_right = 828.0
+offset_bottom = 326.0

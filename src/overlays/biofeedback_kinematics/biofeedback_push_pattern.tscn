@@ -210,6 +210,7 @@ script = ExtResource("8_tdhcr")
 phase = "end"
 
 [node name="Circle" parent="CurrentScene3D/WheelRight/ContactAngleEndRight/angle_contact" index="0" unique_id=672527205]
+visible = false
 layers = 4
 
 [node name="ContactAngleStartRight" parent="CurrentScene3D/WheelRight" unique_id=1398161811 instance=ExtResource("3_ss2qs")]
@@ -217,6 +218,7 @@ script = ExtResource("8_tdhcr")
 phase = "start"
 
 [node name="Circle" parent="CurrentScene3D/WheelRight/ContactAngleStartRight/angle_contact" index="0" unique_id=672527205]
+visible = false
 layers = 4
 
 [node name="HandrimRight" parent="CurrentScene3D/WheelRight" unique_id=8043099 instance=ExtResource("4_8bgme")]
@@ -284,6 +286,7 @@ script = ExtResource("8_tdhcr")
 phase = "end"
 
 [node name="Circle" parent="CurrentScene3D/WheelLeft/ContactAngleEndLeft/angle_contact" index="0" unique_id=672527205]
+visible = false
 layers = 2
 
 [node name="ContactAngleStartLeft" parent="CurrentScene3D/WheelLeft" unique_id=1651147978 instance=ExtResource("3_ss2qs")]
@@ -291,6 +294,7 @@ script = ExtResource("8_tdhcr")
 phase = "start"
 
 [node name="Circle" parent="CurrentScene3D/WheelLeft/ContactAngleStartLeft/angle_contact" index="0" unique_id=672527205]
+visible = false
 layers = 2
 
 [node name="HandrimLeft" parent="CurrentScene3D/WheelLeft" unique_id=1417836334 instance=ExtResource("4_8bgme")]

@@ -133,6 +133,26 @@ var _defaults: Dictionary[String, Dictionary] = {
 	},
 	"overlays.biofeedback_push_frequency.enabled":
 	{"order": 3.06, "label": "Push Frequency", "type": "bool", "default": false},
+	"overlays.biofeedback_push_frequency.target_frequency":
+	{
+		"order": 3.061,
+		"label": "Target Frequency",
+		"type": "float",
+		"default": 1.0,
+		"min": 0.5,
+		"max": 2.5,
+		"step": 0.1
+	},
+	"overlays.biofeedback_push_frequency.green_zone":
+	{
+		"order": 3.062,
+		"label": "Green Zone",
+		"type": "float",
+		"default": 0.5,
+		"min": 0.0,
+		"max": 2.0,
+		"step": 0.1
+	},
 	"overlays.biofeedback_pushrim_kinetics.enabled":
 	{"order": 3.07, "label": "Biofeedback: Pushrim Kinetics", "type": "bool", "default": false},
 	"overlays.biofeedback_pushrim_kinetics.target_force":

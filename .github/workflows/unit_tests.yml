@@ -14,4 +14,4 @@ jobs:
       - uses: lihop/setup-godot@v3
         with:
           version: 4.7-stable
-      - run: godot --import --headless -s addons/gut/gut_cmdln.gd --quit
+      - run: godot --import -d -s --path "$PWD" addons/gut/gut_cmdln.gd -gdir "tests" --quit

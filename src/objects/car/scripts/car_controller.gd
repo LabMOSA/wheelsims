@@ -79,14 +79,11 @@ func _car_progress(delta: float) -> void:
 
 func _car_transform_correction() -> void:
 	var collision_point: Vector3
-	var collision_normal: Vector3
 
 	if down_ray.is_colliding():
 		collision_point = down_ray.get_collision_point()
-		collision_normal = down_ray.get_collision_normal()
 	elif up_ray.is_colliding():
 		collision_point = up_ray.get_collision_point()
-		collision_normal = up_ray.get_collision_normal()
 	else:
 		y_offset = 0
 		return

@@ -67,13 +67,13 @@ func get_precise_size() -> Vector3:
 
 
 func get_size() -> Vector3:
-	var scale: Vector3 = Vector3.ZERO
+	var obj_scale: Vector3 = Vector3.ZERO
 	var box_shape: BoxShape3D
 	if collision_shape.shape is BoxShape3D:
 		box_shape = collision_shape.shape
 	else:
 		push_error("CollisionShape have to be one BoxShape3D")
-		return scale
+		return obj_scale
 	scale = box_shape.size * visual_instance.scale
 	return scale
 

@@ -1,0 +1,32 @@
+name: Run GUT Tests
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Godot
+        run: |
+          wget https://downloads.godotengine.org/?version=4.7&flavor=stable&slug=linux.x86_64.zip&platform=linux.64
+          unzip Godot_v4.7-stable_linux.x86_64.zip
+          chmod +x Godot_v4.7-stable_linux.x86_64
+
+      - name: Import project
+        run: |
+          ./Godot_v4.7-stable_linux.x86_64 \
+            --headless \
+            --path . \
+            --import
+
+      - name: Run GUT
+        run: |
+          ./Godot_v4.7-stable_linux.x86_64 \
+            --headless \
+            --path . \
+            -s addons/gut/gut_cmdln.gd \
+            -gdir=res://tests

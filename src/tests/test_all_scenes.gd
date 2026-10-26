@@ -37,7 +37,7 @@ func _find_scenes(dir_path: String) -> Array[String]:
 	while filename != "":
 		var full_path := dir_path.path_join(filename)
 
-		if filename.to_lower().ends_with(".tscn"):
+		if ".tscn" in filename.to_lower():
 			results.append(full_path)
 
 		filename = dir.get_next()

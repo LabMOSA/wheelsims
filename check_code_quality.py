@@ -9,6 +9,7 @@ pip install gdtoolkit
 """
 
 import subprocess
+import json
 
 
 def _run_and_print(command: list[str]) -> None:
@@ -36,9 +37,35 @@ def run_linter() -> None:  # pragma: no cover
     _run_and_print(["gdlint", "src"])
 
 
+def run_tests() -> None:  # pragma: no cover
+    """Run unit tests (GUT)."""
+    print("========================================")
+    print("Running unit tests (GUT)")
+    print("  If a file dialog window opens, select your Godot executable.")
+    print("  Now running the tests...")
+    _run_and_print(["python", "dev_config.py"])
+    with open("dev_config.json", "r") as fid:
+        dev_config = json.load(fid)
+        _run_and_print(
+            [
+                dev_config["godot_executable"],
+                "-d",
+                "-s",
+#                "--headless",
+                "--path",
+                "./src",
+                "addons/gut/gut_cmdln.gd",
+                "-gdir",
+                "tests",
+                "-gexit_on_success",
+            ]
+        )
+
+
 if __name__ == "__main__":  # pragma: no cover
     run_style_formatter()
     run_linter()
+    run_tests()
     print("========================================")
     print("Completed.")
     print("Do not forget to merge main into your")

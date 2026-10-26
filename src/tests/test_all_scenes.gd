@@ -3,18 +3,10 @@ extends GutTest
 const SCENES_DIR := "res://playable_scenes"
 const RUN_TIME := 0.5
 
-
-func test_all_playable_scenes_run_without_crashing():
-	var scene_paths := _find_scenes(SCENES_DIR)
-
-	assert_gt(scene_paths.size(), 0, "No scenes found in %s" % SCENES_DIR)
-
-	for scene_path in scene_paths:
-		gut.p("Testing " + scene_path)
-		await _test_playable_scene(scene_path)
+var scene_paths: Array[String] = _find_scenes(SCENES_DIR)
 
 
-func _test_playable_scene(scene_path: String) -> void:
+func test_playable_scene(scene_path = use_parameters(scene_paths)) -> void:
 	var packed_scene: PackedScene = load(scene_path)
 
 	assert_not_null(packed_scene, "Failed to load scene: %s" % scene_path)

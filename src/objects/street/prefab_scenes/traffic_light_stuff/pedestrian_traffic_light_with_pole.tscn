@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://dp7bs28bhonax" path="res://objects/street/textures/hand_symbol.png" id="4_rbcks"]
 [ext_resource type="PackedScene" uid="uid://dn2luepc0xc6f" path="res://objects/street/fbx/trafficLightMainPoleSmall.fbx" id="5_rbcks"]
 
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p5r03"]
 render_priority = 0
 shader = ExtResource("3_rbcks")
@@ -49,47 +48,6 @@ operator = 2
 parameter_name = "Texture"
 
 [sub_resource type="VisualShader" id="VisualShader_gkagh"]
-code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
-
-uniform vec4 MainColor : source_color;
-uniform sampler2D Texture;
-uniform float FloatParameter = 5.0;
-uniform vec4 EmissionColor : source_color = vec4(1.000000, 0.000000, 0.000000, 1.000000);
-
-
-
-void fragment() {
-// ColorParameter:2
-	vec4 n_out2p0 = MainColor;
-
-
-	vec4 n_out4p0;
-// Texture2D:4
-	n_out4p0 = texture(Texture, UV);
-	float n_out4p4 = n_out4p0.a;
-
-
-// FloatParameter:5
-	float n_out5p0 = FloatParameter;
-
-
-// ColorParameter:3
-	vec4 n_out3p0 = EmissionColor;
-
-
-// VectorOp:6
-	vec4 n_out6p0 = vec4(n_out5p0) * n_out3p0;
-
-
-// Output:0
-	ALBEDO = vec3(n_out2p0.xyz);
-	ALPHA = n_out4p4;
-	EMISSION = vec3(n_out6p0.xyz);
-
-
-}
-"
 nodes/fragment/0/position = Vector2(380, 160)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_u2w36")
 nodes/fragment/2/position = Vector2(-100, -40)
@@ -139,47 +97,6 @@ operator = 2
 parameter_name = "Texture"
 
 [sub_resource type="VisualShader" id="VisualShader_5n53c"]
-code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
-
-uniform vec4 MainColor : source_color;
-uniform sampler2D Texture;
-uniform float FloatParameter = 5.0;
-uniform vec4 EmissionColor : source_color = vec4(1.000000, 0.000000, 0.000000, 1.000000);
-
-
-
-void fragment() {
-// ColorParameter:2
-	vec4 n_out2p0 = MainColor;
-
-
-	vec4 n_out4p0;
-// Texture2D:4
-	n_out4p0 = texture(Texture, UV);
-	float n_out4p4 = n_out4p0.a;
-
-
-// FloatParameter:5
-	float n_out5p0 = FloatParameter;
-
-
-// ColorParameter:3
-	vec4 n_out3p0 = EmissionColor;
-
-
-// VectorOp:6
-	vec4 n_out6p0 = vec4(n_out5p0) * n_out3p0;
-
-
-// Output:0
-	ALBEDO = vec3(n_out2p0.xyz);
-	ALPHA = n_out4p4;
-	EMISSION = vec3(n_out6p0.xyz);
-
-
-}
-"
 nodes/fragment/0/position = Vector2(380, 160)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_ar7m0")
 nodes/fragment/2/position = Vector2(-100, -40)
@@ -203,49 +120,49 @@ shader_parameter/Texture = ExtResource("4_rbcks")
 shader_parameter/FloatParameter = 5.0
 shader_parameter/EmissionColor = Color(1, 0, 0, 1)
 
-[node name="PedestrianTrafficLight" type="Node3D" node_paths=PackedStringArray("_hand_sprite", "_character_sprite", "_blink_timer", "counter_mesh")]
+[node name="PedestrianTrafficLight" type="Node3D" unique_id=1764784259 node_paths=PackedStringArray("_hand_sprite", "_character_sprite", "_blink_timer", "counter_mesh")]
 script = ExtResource("1_kt1ji")
 _hand_sprite = NodePath("pedestrianLightCounter/pedestrianLightSigns/Hand")
 _character_sprite = NodePath("pedestrianLightCounter/pedestrianLightSigns/Character")
 _blink_timer = NodePath("pedestrianLightCounter/pedestrianLightSigns/Timer")
 counter_mesh = NodePath("pedestrianLightCounter/Number")
 
-[node name="pedestrianLightCounter" parent="." instance=ExtResource("2_vsa6m")]
+[node name="pedestrianLightCounter" parent="." unique_id=1916830221 instance=ExtResource("2_vsa6m")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 2.51495, 0.472423)
 
-[node name="Number" type="MeshInstance3D" parent="pedestrianLightCounter"]
+[node name="Number" type="MeshInstance3D" parent="pedestrianLightCounter" unique_id=138356472]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.0548652, 0, 0, 0.0750272)
 mesh = SubResource("TextMesh_rbcks")
 
-[node name="pedestrianLightSigns" parent="pedestrianLightCounter" instance=ExtResource("2_vsa6m")]
+[node name="pedestrianLightSigns" parent="pedestrianLightCounter" unique_id=1225571307 instance=ExtResource("2_vsa6m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00015752, 0.23, 0.000839859)
 
-[node name="Timer" type="Timer" parent="pedestrianLightCounter/pedestrianLightSigns"]
+[node name="Timer" type="Timer" parent="pedestrianLightCounter/pedestrianLightSigns" unique_id=1302875056]
 wait_time = 0.5
 
-[node name="Character" type="Sprite3D" parent="pedestrianLightCounter/pedestrianLightSigns"]
+[node name="Character" type="Sprite3D" parent="pedestrianLightCounter/pedestrianLightSigns" unique_id=1060830079]
 transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 0, 0, 0.0830189)
 visible = false
 material_override = SubResource("ShaderMaterial_35xjx")
 texture = ExtResource("3_p5r03")
 
-[node name="Hand" type="Sprite3D" parent="pedestrianLightCounter/pedestrianLightSigns"]
+[node name="Hand" type="Sprite3D" parent="pedestrianLightCounter/pedestrianLightSigns" unique_id=808402560]
 transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 0, 0, 0.0830189)
 material_override = SubResource("ShaderMaterial_v77ps")
 modulate = Color(0.78509, 0.209959, 0.205559, 1)
 texture = ExtResource("4_rbcks")
 
-[node name="trafficLightMainPoleSmall" parent="." instance=ExtResource("5_rbcks")]
+[node name="trafficLightMainPoleSmall" parent="." unique_id=1288947134 instance=ExtResource("5_rbcks")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00215819, 0.00543213, 0.00354683)
 
-[node name="pedestrianPoleConnection" parent="." instance=ExtResource("3_vsa6m")]
+[node name="pedestrianPoleConnection" parent="." unique_id=895134450 instance=ExtResource("3_vsa6m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.10321, 0)
 
-[node name="pedestrianPoleSupport" parent="." instance=ExtResource("4_p5r03")]
+[node name="pedestrianPoleSupport" parent="." unique_id=207066280 instance=ExtResource("4_p5r03")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.10321, 0.042)
 
-[node name="pedestrianPoleConnection2" parent="." instance=ExtResource("3_vsa6m")]
+[node name="pedestrianPoleConnection2" parent="." unique_id=1108453578 instance=ExtResource("3_vsa6m")]
 transform = Transform3D(-1, -1.50996e-07, 0, 1.50996e-07, -1, 0, 0, 0, 1, 0, 2.27217, 0)
 
-[node name="pedestrianPoleSupport2" parent="." instance=ExtResource("4_p5r03")]
+[node name="pedestrianPoleSupport2" parent="." unique_id=60090529 instance=ExtResource("4_p5r03")]
 transform = Transform3D(-1, -1.50996e-07, 0, 1.50996e-07, -1, 0, 0, 0, 1, 0, 2.27267, 0.0468716)

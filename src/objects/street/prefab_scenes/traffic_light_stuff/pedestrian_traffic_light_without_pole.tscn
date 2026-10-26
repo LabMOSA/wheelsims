@@ -8,7 +8,6 @@
 [ext_resource type="Shader" uid="uid://b3qxxd21tkpnf" path="res://objects/street/materials/traffic_lights/emission_shader.tres" id="6_djgff"]
 [ext_resource type="PackedScene" uid="uid://cd4tgqtvjd3ex" path="res://objects/street/fbx/pedestrianPoleSupport.fbx" id="6_jg8u2"]
 
-
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_djgff"]
 parameter_name = "MainColor"
 
@@ -35,47 +34,6 @@ operator = 2
 parameter_name = "Texture"
 
 [sub_resource type="VisualShader" id="VisualShader_iflwr"]
-code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
-
-uniform vec4 MainColor : source_color;
-uniform sampler2D Texture;
-uniform float FloatParameter = 5.0;
-uniform vec4 EmissionColor : source_color = vec4(1.000000, 0.000000, 0.000000, 1.000000);
-
-
-
-void fragment() {
-// ColorParameter:2
-	vec4 n_out2p0 = MainColor;
-
-
-	vec4 n_out4p0;
-// Texture2D:4
-	n_out4p0 = texture(Texture, UV);
-	float n_out4p4 = n_out4p0.a;
-
-
-// FloatParameter:5
-	float n_out5p0 = FloatParameter;
-
-
-// ColorParameter:3
-	vec4 n_out3p0 = EmissionColor;
-
-
-// VectorOp:6
-	vec4 n_out6p0 = vec4(n_out5p0) * n_out3p0;
-
-
-// Output:0
-	ALBEDO = vec3(n_out2p0.xyz);
-	ALPHA = n_out4p4;
-	EMISSION = vec3(n_out6p0.xyz);
-
-
-}
-"
 nodes/fragment/0/position = Vector2(380, 160)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_djgff")
 nodes/fragment/2/position = Vector2(-100, -40)
@@ -121,42 +79,42 @@ shader_parameter/FloatParameter = 5.0
 shader_parameter/EmissionColor = Color(1, 0, 0, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cjqa2"]
-load_path = "res://.godot/imported/Hand.png-8a6a853b30a39444aa93e2562216f7fb.s3tc.ctex"
 
-[node name="PedestrianTrafficLight" type="Node3D" node_paths=PackedStringArray("_hand_sprite", "_character_sprite", "_blink_timer", "counter_mesh")]
+[node name="PedestrianTrafficLight" type="Node3D" unique_id=769855391 node_paths=PackedStringArray("_hand_sprite", "_character_sprite", "_blink_timer", "counter_mesh")]
 script = ExtResource("1_djgff")
 _hand_sprite = NodePath("pedestrianLightCounter/pedestrianLightSigns/Hand")
 _character_sprite = NodePath("pedestrianLightCounter/pedestrianLightSigns/Character")
 _blink_timer = NodePath("pedestrianLightCounter/pedestrianLightSigns/Timer")
 counter_mesh = NodePath("pedestrianLightCounter/Number")
 
-[node name="pedestrianPoleSupport" parent="." instance=ExtResource("6_jg8u2")]
+[node name="pedestrianPoleSupport" parent="." unique_id=1341974372 instance=ExtResource("6_jg8u2")]
 transform = Transform3D(-0.0226873, 4.47031e-08, -0.999743, 0.999743, -4.37001e-08, -0.0226873, -4.47031e-08, -1, -4.37001e-08, 0.444078, 0.376458, -0.116274)
 
-[node name="pedestrianPoleConnection" parent="." instance=ExtResource("5_tkc01")]
+[node name="pedestrianPoleConnection" parent="." unique_id=634110406 instance=ExtResource("5_tkc01")]
 transform = Transform3D(-0.0226002, 0, -0.999744, 0, 1, 0, 0.999744, 0, -0.0226002, 0.405287, 0.376458, -0.113958)
 
-[node name="pedestrianLightCounter" parent="." instance=ExtResource("2_cjqa2")]
+[node name="pedestrianLightCounter" parent="." unique_id=341091893 instance=ExtResource("2_cjqa2")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
-[node name="Number" type="MeshInstance3D" parent="pedestrianLightCounter"]
+[node name="Number" type="MeshInstance3D" parent="pedestrianLightCounter" unique_id=1725181309]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.0548652, 0, 0, 0.0777022)
 mesh = SubResource("TextMesh_djgff")
 
-[node name="pedestrianLightSigns" parent="pedestrianLightCounter" instance=ExtResource("2_cjqa2")]
+[node name="pedestrianLightSigns" parent="pedestrianLightCounter" unique_id=49322575 instance=ExtResource("2_cjqa2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00015752, 0.23, 0.000839859)
 
-[node name="Timer" type="Timer" parent="pedestrianLightCounter/pedestrianLightSigns"]
+[node name="Timer" type="Timer" parent="pedestrianLightCounter/pedestrianLightSigns" unique_id=2047595751]
 wait_time = 0.5
 
-[node name="Character" type="Sprite3D" parent="pedestrianLightCounter/pedestrianLightSigns"]
+[node name="Character" type="Sprite3D" parent="pedestrianLightCounter/pedestrianLightSigns" unique_id=1054251045]
 transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 0, 0, 0.0830189)
 visible = false
 material_override = SubResource("ShaderMaterial_djgff")
 texture = ExtResource("3_cr2um")
 
-[node name="Hand" type="Sprite3D" parent="pedestrianLightCounter/pedestrianLightSigns"]
+[node name="Hand" type="Sprite3D" parent="pedestrianLightCounter/pedestrianLightSigns" unique_id=872378384]
 transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 0, 0, 0.0772487)
+visible = false
 material_override = SubResource("ShaderMaterial_cjqa2")
 modulate = Color(0.78509, 0.209959, 0.205559, 1)
 texture = SubResource("CompressedTexture2D_cjqa2")

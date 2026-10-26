@@ -166,8 +166,6 @@ transform = Transform3D(146182.42, 0, 0, 0, 1, 0, 0, 0, 609.57465, 2101.4253, -3
 
 [node name="Player" parent="." unique_id=993534235 instance=ExtResource("11_ci2c1")]
 transform = Transform3D(-0.04959936, 0, -0.9987692, 0, 1, 0, 0.9987692, 0, -0.04959936, -16.438675, 0, 0)
-KB_LINEAR_SPEED = 5.0
-KB_ANGULAR_SPEED = 2.0
 
 [node name="StartDecor" type="Node3D" parent="." unique_id=950905358]
 transform = Transform3D(0.9999961, -0.00062458403, 0.0027142307, 0.00060764747, 0.9999804, 0.0062307985, -0.0027180724, -0.006229124, 0.9999769, 0, 0, 0)

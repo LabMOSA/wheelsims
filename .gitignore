@@ -17,3 +17,4 @@ mono_crash.*.json
 *.blend1
 *.tmp
 src/Calibration.json
+dev_config.json

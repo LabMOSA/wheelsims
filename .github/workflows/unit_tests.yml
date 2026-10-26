@@ -1,0 +1,21 @@
+name: Unit tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "**" ]
+
+jobs:
+  run_tests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lihop/setup-godot@v3
+        with:
+          version: 4.7-stable
+      - run: |
+          cd src
+          godot --import --headless --path "$PWD"
+          godot --headless -d -s --path "$PWD" addons/gut/gut_cmdln.gd -gdir "tests" --quit

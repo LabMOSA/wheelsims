@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://b4m6qj4cek20f"]
 
 [ext_resource type="PackedScene" uid="uid://d4dm6lh1tu5fw" path="res://games/races/common_objects/crowd/crowd.tscn" id="1_qsrrj"]
-[ext_resource type="AudioStream" uid="uid://owaj5m5lpk1b" path="res://sounds/sounds/human_sounds/No_Loop_applause-cheerfully.wav" id="2_bqkbv"]
 [ext_resource type="PackedScene" uid="uid://coruo7vfgu041" path="res://objects/race_objects/western_theme/scenes/saloon.tscn" id="3_0jk16"]
 [ext_resource type="PackedScene" uid="uid://t4035q8axi6v" path="res://objects/race_objects/western_theme/scenes/hay_bale.tscn" id="4_oqeu0"]
 [ext_resource type="PackedScene" uid="uid://dvg5fhruf6tvk" path="res://objects/race_objects/western_theme/scenes/wind_turbine.tscn" id="5_4c0me"]
@@ -93,26 +92,51 @@ shadow_mesh = SubResource("ArrayMesh_hpqjy")
 [node name="LeftCrowd" parent="." unique_id=104881149 instance=ExtResource("1_qsrrj")]
 transform = Transform3D(0.298008, 0, 0.954563, 0, 1, 0, -0.954563, 0, 0.298008, -6.52749, 0, -2.12138)
 visible = false
-_applaud_loop = ExtResource("2_bqkbv")
-is_final_crowd_on_race = true
 
 [node name="RightCrowd" parent="." unique_id=806692792 instance=ExtResource("1_qsrrj")]
 transform = Transform3D(0.414233, 0, -0.910171, 0, 1, 0, 0.910171, 0, 0.414233, 6.69357, 0, -2.93145)
 visible = false
-_applaud_loop = ExtResource("2_bqkbv")
-is_final_crowd_on_race = true
 
-[node name="Kate" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="0" unique_id=1250926094]
+[node name="Adam" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="0" unique_id=546758556]
+transform = Transform3D(0.9168986, 0, 0.39903608, 0, 1, 0, -0.39903608, 0, 0.9168986, -1.189389, -2.3841858e-07, -0.45102262)
+
+[node name="Bryce" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="1" unique_id=2007714569]
+transform = Transform3D(0.97970486, 0, 0.20026532, 0, 1, 0, -0.20026532, 0, 0.97970486, 1.0086188, 0, 1.54317)
+
+[node name="Brian" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="2" unique_id=43182696]
+transform = Transform3D(0.9782263, 0, 0.20738864, 0, 1, 0, -0.20738864, 0, 0.9782263, 0.44530582, 0, -0.9075508)
+
+[node name="David" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="3" unique_id=1022598771]
+transform = Transform3D(0.99827313, 0, 0.058009177, 0, 1, 0, -0.058009177, 0, 0.99827313, 1.8099272, 0, 0.82202053)
+
+[node name="Elizabeth" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="4" unique_id=333405279]
+transform = Transform3D(0.9909748, 0, -0.13373774, 0, 1, 0, 0.13373774, 0, 0.9909748, 3.180709, 1.1920929e-07, -0.058531284)
+
+[node name="James" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="5" unique_id=867120981]
+transform = Transform3D(0.9325859, 0, -0.3607998, 0, 1, 0, 0.3607998, 0, 0.9325859, 5.132419, -2.3841858e-07, -0.3073144)
+
+[node name="Jody" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="6" unique_id=909628281]
+transform = Transform3D(0.97809374, 0, -0.20783019, 0, 1, 0, 0.20783019, 0, 0.97809374, 3.4174337, 0, 1.5146976)
+
+[node name="Josh" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="7" unique_id=999066713]
+transform = Transform3D(0.8580143, 0, -0.5135542, 0, 1, 0, 0.5135542, 0, 0.8580143, 6.505186, 0, 0.091609)
+
+[node name="Kate" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="8" unique_id=368487169]
 transform = Transform3D(0.9999996, 0, 0, 0, 1, 0, 0, 0, 0.9999996, -0.8011174, 2.795015, -4.8616905)
-script = null
+look_at_player = false
+cheer_distance = 0.0
 
-[node name="Megan2" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="5" unique_id=783590196]
-transform = Transform3D(0.9999995, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 0.9999995, -0.30338144, 0.21424508, -4.747693)
-script = null
+[node name="Leonard" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="9" unique_id=1870252407]
+transform = Transform3D(0.9757634, 0, 0.21866038, 0, 1, 0, -0.21866038, 0, 0.9757634, 0.58736324, 0, 0.16942835)
 
-[node name="Josh4" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="14" unique_id=594795417]
-transform = Transform3D(0.9999996, 0, 0, 0, 1, 0, 0, 0, 0.9999996, -1.9248371, 2.775484, -5.464157)
-script = null
+[node name="Lewis" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="10" unique_id=25879838]
+transform = Transform3D(0.9163419, 0, -0.4002353, 0, 1, 0, 0.4002353, 0, 0.9163419, 4.8515043, 0, 1.2056031)
+
+[node name="Louise" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="11" unique_id=1533527717]
+transform = Transform3D(0.97384626, 0, -0.2270482, 0, 1, 0, 0.2270482, 0, 0.97384626, 4.025812, 0, -0.5814724)
+
+[node name="Suzy" parent="RightCrowd/Humans" parent_id_path=PackedInt32Array(806692792, 1915998250) index="12" unique_id=1374866775]
+transform = Transform3D(0.99958134, 0, 0.027653337, 0, 1, 0, -0.027653337, 0, 0.99958134, 1.9399037, 0, -1.615839)
 
 [node name="BézierCurve_001" type="MeshInstance3D" parent="." unique_id=395804912]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -3.021432, 0.061215043, -0.042713523)

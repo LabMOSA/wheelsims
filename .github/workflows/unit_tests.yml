@@ -6,12 +6,11 @@ on:
   pull_request:
     branches: [ "**" ]
 
-job:
+jobs:
   run_tests:
     name: Run Tests
     runs-on: ubuntu-latest
-    step:
-      - name: Install Godot
+    steps:
       - uses: lihop/setup-godot@v3
         with:
           version: 4.7-stable

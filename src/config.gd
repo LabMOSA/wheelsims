@@ -301,6 +301,17 @@ var _defaults: Dictionary[String, Dictionary] = {
 		"default": [0.0, 0.0, 0.0],
 		"reference": "forearm_cluster_right"
 	},
+	"audio": {"order": 6, "label": "AUDIO"},
+	"audio.master_volume":
+	{
+		"order": 6.1,
+		"label": "Master volume",
+		"unit": "%",
+		"type": "int",
+		"default": 100,
+		"min": 1,
+		"max": 100
+	}
 }
 
 ## Overrides

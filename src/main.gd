@@ -16,7 +16,8 @@ var _current_scene_path = null
 
 ## The viewport the 3D scene is rendered in.
 @onready var scene_viewport: SubViewport = get_node("SceneViewport")
-
+@onready var _master_bus_index := AudioServer.get_bus_index("Master")
+@onready var _master_default_volume := AudioServer.get_bus_volume_db(_master_bus_index) 
 # -------------------------------------------------------------------
 # Scene loading/unloading
 # -------------------------------------------------------------------
@@ -47,6 +48,14 @@ func _current_scene(_connection):
 	if _current_scene_path != null:
 		SignalBus.session_scene.emit(_current_scene_path)
 
+# -------------------------------------------------------------------
+# Audio
+# -------------------------------------------------------------------
+
+func _update_master_volume() -> void:
+	var volume := float(Config.get_value("audio.master_volume")) / 100.0
+	if volume > 0.0:
+		AudioServer.set_bus_volume_db(_master_bus_index, _master_default_volume + linear_to_db(volume))
 
 # -------------------------------------------------------------------
 # Updated config value
@@ -65,3 +74,6 @@ func _process(_delta):
 	for key in available_devices:
 		if Config.value_changed("main", key) and Config.get_value(key):
 			add_child(available_devices[key].instantiate())
+			
+	if Config.value_changed("main", "audio.master_volume"):
+		_update_master_volume()

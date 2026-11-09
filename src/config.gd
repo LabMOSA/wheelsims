@@ -74,6 +74,33 @@ var _defaults: Dictionary[String, Dictionary] = {
 		"min": -45.0,
 		"max": 45.0
 	},
+	"player.camera.motion_blur.enabled":
+	{
+		"order": 1.06,
+		"label": "Enable motion blur",
+		"type": "bool",
+		"default": false	
+	},
+	"player.camera.motion_blur.strength":
+	{
+		"order": 1.07,
+		"label": "Motion blur strength",
+		"type": "float",
+		"default": 25.0,
+		"min": 1.0,
+		"max": 64,
+		"step": 0.5
+	},
+	"player.camera.motion_blur.sample_count":
+	{
+		"order": 1.08,
+		"label": "Motion blur sample count",
+		"type": "int",
+		"default": 15,
+		"min": 2,
+		"max": 30,
+		"step": 1
+	},
 	"game": {"order": 2, "label": "GAME PARAMETERS"},
 	"game.racing.type":
 	{

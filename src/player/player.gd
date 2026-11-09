@@ -22,6 +22,11 @@ class_name Player
 extends RigidBody3D
 
 # ------------------
+# Constants
+# ------------------
+const MOTION_BLUR_SCENE := preload("res://devices/Motion_Blur/camera_motion_blur.tscn")
+
+# ------------------
 # Editable constants
 # ------------------
 @export_group("Keyboard Control")
@@ -55,6 +60,7 @@ var _keyboard_angular_velocity: float = 0.0
 # -----------------------
 var _config_update_required: bool = true  # Update to match config
 var _camera_rotation_x_offset: float = 0.0
+var _motion_blur : MeshInstance3D = null
 
 @onready var rolling_resistance_coefficient: float = _default_rolling_resistance_coefficient
 
@@ -97,7 +103,9 @@ func _process(_delta):
 	if Config.value_changed("player", "player.camera.angle") or _config_update_required:
 		_camera_rotation_x_offset = Config.get_value("player.camera.angle") / 180 * PI
 	_config_update_required = false
-
+	if Config.value_changed("player", "player.camera.motion_blur.enabled"):
+		_update_motion_blur()
+		
 	# Only keep camera rotation around y (keep level)
 	$Camera.rotation.x = _camera_rotation_x_offset - rotation.x
 	$Camera.rotation.z = -rotation.z
@@ -201,6 +209,19 @@ func _on_player_on_simulator_body_shape_entered(
 	if body is Surface:
 		rolling_resistance_coefficient = body.resistance
 
-
+func _update_motion_blur() -> void:
+	var enabled := bool(Config.get_value("player.camera.motion_blur.enabled"))
+	
+	if enabled:
+		if not is_instance_valid(_motion_blur):
+			_motion_blur = MOTION_BLUR_SCENE.instantiate() as MeshInstance3D
+			$Camera.add_child(_motion_blur)
+	else:
+		if is_instance_valid(_motion_blur):
+			_motion_blur.hide()
+			_motion_blur.queue_free()
+	
+		_motion_blur = null
+		
 func _on_tree_exiting() -> void:
 	Globals.player = null

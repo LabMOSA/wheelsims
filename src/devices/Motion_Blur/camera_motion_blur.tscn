@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cboxnkjr6qhqd"]
+
+[ext_resource type="Shader" uid="uid://c1p3qrco6w677" path="res://devices/Motion_Blur/camera_motion_blur.gdshader" id="1_5y4tq"]
+[ext_resource type="Script" uid="uid://bbrx2b1yuq8q6" path="res://devices/Motion_Blur/camera_motion_blur.gd" id="2_xmj1v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xmj1v"]
+render_priority = 0
+shader = ExtResource("1_5y4tq")
+shader_parameter/blur_strength = 5.0000002375
+shader_parameter/sample_count = 15
+shader_parameter/is_camera_history_ready = false
+shader_parameter/previous_view = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ayiba"]
+size = Vector2(2, 2)
+
+[node name="CameraMotionBlur" type="MeshInstance3D" unique_id=1610595097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+material_override = SubResource("ShaderMaterial_xmj1v")
+cast_shadow = 0
+extra_cull_margin = 1.0
+mesh = SubResource("QuadMesh_ayiba")
+script = ExtResource("2_xmj1v")
